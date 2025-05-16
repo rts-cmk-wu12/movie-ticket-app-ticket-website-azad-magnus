@@ -1,27 +1,12 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-# Nothing Right Now.
-_come back later i guess_
-=======
-=======
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/t9fNoC-R)
->>>>>>> 7d1b373 (add deadline)
-=======
-# React + Vite
->>>>>>> 73bb19e (Added Files)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🎬 Movie Ticket App
 
-Currently, two official plugins are available:
+## 📌 Opgavebeskrivelse
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+I denne opgave skal I udvikle en **web-applikation til booking af biografbilletter**. Applikationen skal følge det medfølgende design, som er udarbejdet i Figma, og som dækker hele brugerrejsen fra filmudforskning til billetkøb og visning af e-billet.
 
-## Expanding the ESLint configuration
+I må arbejde **alene eller i en 2-personers gruppe**.
 
-<<<<<<< HEAD
 ---
 
 ## 🎯 Formål
@@ -67,11 +52,3 @@ Formålet med opgaven er at:
 
 > Indsæt link til jeres hostede version her, fx:
 > [https://biografbooking.netlify.app](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
->>>>>>> 9eb25a0 (Initial commit)
-=======
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
->>>>>>> 73bb19e (Added Files)
-=======
-# Nothing Right Now.
-_come back later i guess_
->>>>>>> d9475a1 (Added Files)
