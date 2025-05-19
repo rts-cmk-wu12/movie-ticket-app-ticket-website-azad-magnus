@@ -1,9 +1,18 @@
+@use "~/style/utils/variables" as *;
+
 // Simple reset style
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   color: inherit;
+  font-family: inherit;
+}
+
+body {
+  font-family: $font-poppins;
+  background-color: $black-bg;
+  color: $white-text
 }
 
 li {
