@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Nothing Right Now.
 _come back later i guess_
 =======
@@ -70,3 +71,7 @@ Formålet med opgaven er at:
 =======
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 >>>>>>> 73bb19e (Added Files)
+=======
+# Nothing Right Now.
+_come back later i guess_
+>>>>>>> d9475a1 (Added Files)
