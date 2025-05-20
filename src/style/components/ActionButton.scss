@@ -1,0 +1,35 @@
+@use "~/style/utils/variables" as *;
+@use 'sass:color';
+
+// Standard Button Color
+.standard {
+  display: block;
+  max-width: 315px;
+  height: max-content;
+  &__button {
+    width: 100%;
+    background-color: $blue-bg;
+    padding: 10px;
+    border-radius: 12px;
+    &:hover {
+      background-color: color.adjust($blue-bg, $lightness: -10%);
+    }
+  }
+}
+
+
+// Back Button Color
+.backButton {
+  display: block;
+  max-width: 315px;
+  height: max-content;
+  &__button {
+    width: 100%;
+    background-color: $black-bg;
+    padding: 10px;
+    border-radius: 12px;
+    &:hover {
+      background-color: color.adjust($black-bg, $lightness: 10%);
+    }
+  }
+}
