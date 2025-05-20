@@ -6,7 +6,7 @@
                 "src/assets/*"
             ],
             "~components/*": [
-                "src/style/components/*"
+                "src/components/*"
             ],
             "~pages/*": [
                 "src/pages/*"
