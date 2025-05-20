@@ -31,6 +31,7 @@
     "react-icons": "^5.5.0",
     "sass": "^1.89.0",
     "vite": "^6.3.5",
-    "vite-aliases": "^0.11.8"
+    "vite-aliases": "^0.11.8",
+    "vite-plugin-svgr": "^4.3.0"
   }
 }

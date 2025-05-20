@@ -15,6 +15,12 @@ body {
   color: $white-text
 }
 
+body, #root {
+  min-height: 100vh;
+  display: grid;
+  flex-direction: column;
+}
+
 li {
   list-style: none;
 }

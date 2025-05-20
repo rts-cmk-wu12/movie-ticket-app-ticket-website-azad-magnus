@@ -4,7 +4,8 @@
 // Standard Button Color
 .standard {
   display: block;
-  max-width: 200px;
+  max-width: 315px;
+  height: max-content;
   &__button {
     width: 100%;
     background-color: $blue-bg;
@@ -20,7 +21,8 @@
 // Back Button Color
 .backButton {
   display: block;
-  max-width: 200px;
+  max-width: 315px;
+  height: max-content;
   &__button {
     width: 100%;
     background-color: $black-bg;
