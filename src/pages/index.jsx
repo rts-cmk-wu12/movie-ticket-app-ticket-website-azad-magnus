@@ -1,11 +1,21 @@
-import {ActionButton} from "~components/ActionButton.jsx";
 import {NavigationBar} from "~components/NavigationBar.jsx";
+import ProfilePicture from "~assets/svg/ProfilePicture.png";
+import "~style/components/WelcomeIntroduction.scss";
+import {SearchBar} from "~components/SearchBar.jsx";
 
 const mainPage = () => {
     return (
         <>
-            <ActionButton text={"Checkout"} anchorTagClass={"standard"} buttonClass={"standard__button"}></ActionButton>
-            <ActionButton text={"Go Back To Page"} anchorTagClass={"backButton"} buttonClass={"backButton__button"}></ActionButton>
+            <div className={"welcome-introduction"}>
+                <div>
+                    <p>Welcome Back,</p>
+                    <p>Name</p>
+                </div>
+                <img className={"welcome-introduction__image"} src={ProfilePicture} alt="Profile Picture" />
+            </div>
+
+            <SearchBar></SearchBar>
+
             <NavigationBar></NavigationBar>
         </>
     )

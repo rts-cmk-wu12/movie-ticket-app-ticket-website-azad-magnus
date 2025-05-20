@@ -1,8 +1,10 @@
 .navigation-bar {
   display: flex;
   justify-content: space-between;
-  margin: 2rem;
-  align-self: end;
+  padding: 2rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   &__icon {
     width: 24px;
     &--active *  {
