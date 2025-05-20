@@ -2,7 +2,6 @@ import HomeIcon from "~assets/svg/Home.svg?react";
 import BookmarkIcon from "~assets/svg/Bookmark.svg?react";
 import DiscoverIcon from "~assets/svg/Discovery.svg?react";
 import ProfileIcon from "~assets/svg/Profile.svg?react";
-
 import "~style/components/NavigationBar.scss";
 import { Link, useLocation } from "react-router";
 
