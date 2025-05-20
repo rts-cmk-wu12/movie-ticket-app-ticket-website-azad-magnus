@@ -10,6 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fastify/cors": "^11.0.1",
+    "axios": "^1.9.0",
+    "dotenv": "^16.5.0",
+    "fastify": "^5.3.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router": "^7.6.0",
@@ -27,6 +31,7 @@
     "react-icons": "^5.5.0",
     "sass": "^1.89.0",
     "vite": "^6.3.5",
-    "vite-aliases": "^0.11.8"
+    "vite-aliases": "^0.11.8",
+    "vite-plugin-svgr": "^4.3.0"
   }
 }

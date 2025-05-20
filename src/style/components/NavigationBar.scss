@@ -1,0 +1,12 @@
+.navigation-bar {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem;
+  align-self: end;
+  &__icon {
+    width: 24px;
+    &--active *  {
+      fill: #54a8e5;
+    }
+  }
+}

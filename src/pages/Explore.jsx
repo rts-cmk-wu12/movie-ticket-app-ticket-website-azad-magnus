@@ -1,7 +1,7 @@
 import {ActionButton} from "~components/ActionButton.jsx";
 import {NavigationBar} from "~components/NavigationBar.jsx";
 
-const mainPage = () => {
+const discoverPage = () => {
     return (
         <>
             <ActionButton text={"Checkout"} anchorTagClass={"standard"} buttonClass={"standard__button"}></ActionButton>
@@ -11,4 +11,4 @@ const mainPage = () => {
     )
 }
 
-export default mainPage;
+export default discoverPage;
