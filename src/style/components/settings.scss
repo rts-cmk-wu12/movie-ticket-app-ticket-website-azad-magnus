@@ -1,0 +1,98 @@
+.profile-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+    padding: 60px;
+ 
+
+  .welcome-introduction__image {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+  }
+
+  
+.orospu{
+    display: flex;
+}
+
+  .profile-section-text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 16px;
+
+    h2, h3 {
+      margin: 0;
+    }
+  }
+
+  .arrow-icon {
+   font-size: 26px;
+   color: #FFFFFF;
+  }
+}
+
+.line {
+ border-bottom: 1px solid #3a3a3a;
+  margin: 20px auto;
+  width: 90%;
+}
+
+.account, .privacy {
+  justify-content: space-evenly;
+  padding: 60px;
+  
+  
+
+  
+
+  h2 {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .section-under-account,
+  .section-under-privacy {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+
+    img {
+      width: 48px;
+      height: 48px;
+      padding: 8px;
+      border-radius: 8px;
+    }
+
+    p {
+      flex: 1;
+      margin: 0 16px;
+      font-size: 16px;
+    }
+
+    svg {
+      font-size: 26px;
+      color: #FFFFFF;
+    }
+  }
+
+
+  .perosnal-data-image,
+  .Notification-data-image {
+    background-color: #546EE5;
+  }
+
+  .email-data-image,
+  .Ticket-data-image {
+    background-color: #54C2E5;
+  }
+
+  .delete-data-image,
+  .Logout-data-image {
+    background-color: #E55454;
+  }
+}
+
