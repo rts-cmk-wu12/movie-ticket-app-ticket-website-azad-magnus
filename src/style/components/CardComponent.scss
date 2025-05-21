@@ -1,0 +1,51 @@
+.card__container {
+  width: 100%;
+  padding: 20px;
+}
+
+
+.card {
+  display: flex;
+  flex-direction: column;
+  max-width: 315px;
+  width: 100%;
+  background-color: #35aaff;
+  background-image: url("~/assets/svg/TriangleLayer.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  padding:  15px;
+  border-radius: 8px;
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-bottom: 25px;
+  }
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 10;
+    padding-top: 10px;
+  }
+
+  &__bottom::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+    background-color: #007cd7;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+
+  &-img {
+    width: 48px;
+  }
+}

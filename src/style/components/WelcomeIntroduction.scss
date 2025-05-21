@@ -1,8 +1,14 @@
+@use '../utils/variables' as *;
+
 .welcome-introduction {
   display: flex;
   justify-content: space-between;
   width: 100%;
   padding: 2rem;
+
+  p:first-child {
+    color: $coming-soon-date-text;
+  }
 
   &__image {
     width: 48px;

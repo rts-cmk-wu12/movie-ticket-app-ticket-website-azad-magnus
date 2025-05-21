@@ -25,10 +25,14 @@
     font-size: 1rem;
     border-radius: 8px;
     background-color: rgba(105, 109, 116, 0.3);
+    height: 54px;
+
 
     &:focus {
-      border-color: #666;
+      transition: border 0.15s ease-in-out;
+      border: 1px solid #666;
       outline: none;
     }
+
   }
 }
