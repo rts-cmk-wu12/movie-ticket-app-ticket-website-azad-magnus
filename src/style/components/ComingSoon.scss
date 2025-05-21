@@ -1,0 +1,31 @@
+@use "~/style/utils/variables" as *;
+
+.coming_soon-movies {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem;
+  flex-direction: column;
+
+  &__container {
+    display: flex;
+    gap: 1rem;
+    overflow-x: scroll;
+  }
+
+  &__title {
+  margin-top: 5px;
+  }
+
+  &__image {
+    aspect-ratio: 16/9;
+    height:  180px;
+    width: 315px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 12px;
+  }
+
+  &__date {
+    color: $coming-soon-date-text;
+  }
+}

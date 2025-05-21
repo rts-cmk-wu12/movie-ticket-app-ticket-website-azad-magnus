@@ -52,6 +52,14 @@ fastify.get('/movie/:id', {
     return data;
 });
 
+fastify.get('/movie/:id/credits', {
+    schema: { params: movieIdParam },
+}, async (req, reply) => {
+    const { id } = req.params;
+    const { data } = await tmdb.get(`/movie/${id}/credits`);
+    return data;
+});
+
 fastify.get('/search', {
     schema: { querystring: searchQuery },
 }, async (req, reply) => {
