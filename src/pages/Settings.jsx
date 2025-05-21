@@ -16,7 +16,7 @@ const profilePage = () => {
         <>
       <HeaderNavigation></HeaderNavigation>
             <div className="profile-section">
-                <div className="orospu">
+                <div className="profile-section-container">
                 <img className={"welcome-introduction__image"} src={ProfilePicture} alt="Profile Picture" />
                 <div className="profile-section-text">
                <h2>Miles Morales</h2>
