@@ -10,7 +10,6 @@ await fastify.register(cors);
 
 // Config of ENV to get API KEY
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
-
 const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
 
 if (!TMDB_API_KEY) {
