@@ -1,6 +1,8 @@
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import "~style/components/movie-details.scss";
+import { HeaderNavigation } from "~components/HeaderNavigation";
+import { BsBookmarkDash } from "react-icons/bs";
 
 const MovieDetails = () => {
     const { id } = useParams();
@@ -35,6 +37,10 @@ const MovieDetails = () => {
     console.log(director.crew[0])
 
     return (
+
+        <>
+        <HeaderNavigation title={"Details Movie"} link={"/home"} element={<BsBookmarkDash />}></HeaderNavigation>
+        
         <div className="movie-details">
             <img
                 className="movie-details__image"
@@ -51,6 +57,7 @@ const MovieDetails = () => {
             </p>
 
         </div>
+        </>
     );
 };
 

@@ -1,0 +1,32 @@
+
+.payment-method{
+display: flex;
+padding: 20px;
+margin: 0 auto;
+align-items: center;
+gap: 30px;
+}
+
+.payment-details-container{
+    justify-content: center;
+    flex-direction: column;
+    max-width: 315px;
+    margin: 0 auto;
+    
+}
+
+.date-cvv{
+   display: flex;
+   gap: 10px;
+}
+
+input{
+    background-color: transparent;
+    border: 1px solid #B2B5BB;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}

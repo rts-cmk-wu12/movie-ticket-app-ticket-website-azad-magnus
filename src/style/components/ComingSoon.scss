@@ -1,10 +1,11 @@
 @use "~/style/utils/variables" as *;
 
 .coming_soon-movies {
-  display: flex;
+  display: grid;
   gap: 1rem;
   margin: 2rem;
   flex-direction: column;
+  max-width: fit-content;
 
   &__container {
     display: flex;

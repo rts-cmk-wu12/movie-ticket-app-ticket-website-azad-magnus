@@ -17,8 +17,10 @@ body {
 
 body, #root {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: none;
 }
 
 li {

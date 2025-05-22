@@ -3,7 +3,7 @@ import cors from '@fastify/cors';
 import axios from 'axios';
 import dotenv from 'dotenv';
 
-dotenv.config();
+dotenv.config({path: 'server/.env'});
 
 const fastify = Fastify({ logger: true });
 await fastify.register(cors);
