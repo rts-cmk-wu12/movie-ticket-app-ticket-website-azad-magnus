@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import "~style/components/movie-details.scss";
 import { HeaderNavigation } from "~components/HeaderNavigation";
 import { BsBookmarkDash } from "react-icons/bs";
+import { IoIosStar } from "react-icons/io";
 
 const MovieDetails = () => {
     const { id } = useParams();
@@ -39,24 +40,43 @@ const MovieDetails = () => {
     return (
 
         <>
-        <HeaderNavigation title={"Details Movie"} link={"/home"} element={<BsBookmarkDash />}></HeaderNavigation>
-        
-        <div className="movie-details">
-            <img
-                className="movie-details__image"
-                src={`https://image.tmdb.org/t/p/w1920/${movie.poster_path}`}
-                alt={movie.title}
-            />
-            <h2 className="movie-details__title">{movie.title}</h2>
-            <p className="movie-details__director">
-                {(() => {
-                    const directors = director.crew.filter(personJob => personJob.job === "Director");
-                    const DirectorName = directors.length === 1 ? "Director" : "Directors";
-                    return `${DirectorName}: ${directors.map(person => person.name).join(', ')}`;
-                })()}
-            </p>
+            <HeaderNavigation title={"Details Movie"} link={"/home"} element={<BsBookmarkDash className="bookmark" />}></HeaderNavigation>
 
-        </div>
+            <div className="movie-details">
+                <img
+                    className="movie-details__image"
+                    src={`https://image.tmdb.org/t/p/w1920/${movie.poster_path}`}
+                    alt={movie.title}
+                />
+                <h2 className="movie-details__title">{movie.title}</h2>
+                <p className="movie-details__director">
+                    {(() => {
+                        const directors = director.crew.filter(personJob => personJob.job === "Director");
+                        const DirectorName = directors.length === 1 ? "Director" : "Directors";
+                        return `${DirectorName}: ${directors.map(person => person.name).join(', ')}`;
+                    })()}
+                    <span className="movie-details__rating-divider">|</span>
+                            <IoIosStar className="movie-details__rating-star" />             
+                    {movie.vote_average.toFixed(1)} 
+                </p>
+
+                <div className="movie-details__overview">
+
+                    <p className="movie-details__genres">
+                        {movie.genres.map((genre, index) => (
+                            <span key={index} className="movie-details__genre">
+                                {genre.name}
+                            </span>
+                        ))}
+                    </p>
+
+                    <p className="movie-details__runtime">
+                        {Math.floor(movie.runtime / 60)}h {movie.runtime % 60}m
+                    </p>
+
+                </div>
+
+            </div>
         </>
     );
 };
