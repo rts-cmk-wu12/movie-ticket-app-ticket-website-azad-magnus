@@ -1,0 +1,63 @@
+@use '../utils/variables' as *;
+.cinema__section {
+  width: 100vw;
+}
+.cinema-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.cinema-near {
+  display: flex;
+  align-items: center;
+  border-radius: 12px;
+  margin: 1rem;
+  padding: 1rem;
+
+
+  &__image {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-right: 1rem;
+  }
+
+  &__info {
+    flex-grow: 1;
+
+    p {
+      margin: 0.25rem 0;
+      font-size: 0.95rem;
+      color: #333;
+
+      &.cinema-near__distance {
+        font-weight: 500;
+        color: $blue-bg;
+        font-size: 0.85rem;
+      }
+
+      &.cinema-near__name {
+        font-weight: bold;
+        font-size: 1.1rem;
+        color: #ffffff;
+      }
+
+      &.cinema-near__closing {
+        font-style: italic;
+        font-size: 0.9rem;
+        color: #BABFC9;
+
+        &.open {
+          color: #28a745;
+        }
+
+        &.soon {
+          color: #ffc107;
+        }
+      }
+    }
+  }
+}

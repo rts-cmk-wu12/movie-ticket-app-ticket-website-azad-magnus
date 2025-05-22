@@ -2,9 +2,8 @@
   display: flex;
   justify-content: space-between;
   padding: 2rem;
-  position: fixed;
   bottom: 0;
-  width: 100%;
+  width: 100vw;
   &__icon {
     width: 24px;
     &--active *  {
