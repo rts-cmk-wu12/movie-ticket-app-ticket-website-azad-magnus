@@ -4,6 +4,8 @@ import {Link} from "react-router";
 
 export const ComingSoon = () => {
 
+
+
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -30,7 +32,7 @@ export const ComingSoon = () => {
 
     return (
         <>
-            <div className={"coming_soon-movies"}>
+            <div  className={"coming_soon-movies"}>
                 <h2>Coming Soon</h2>
                 <div className={"coming_soon-movies__container"}>
                     {
