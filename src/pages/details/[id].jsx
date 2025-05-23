@@ -4,6 +4,7 @@ import "~style/components/movie-details.scss";
 import { HeaderNavigation } from "~components/HeaderNavigation";
 import { BsBookmarkDash } from "react-icons/bs";
 import { IoIosStar } from "react-icons/io";
+import {ActionButton} from "~components/ActionButton.jsx";
 
 const MovieDetails = () => {
     const { id } = useParams();
@@ -40,7 +41,7 @@ const MovieDetails = () => {
     return (
 
         <>
-            <HeaderNavigation title={"Details Movie"} link={"/home"} element={<BsBookmarkDash className="bookmark" />}></HeaderNavigation>
+            <HeaderNavigation title={"Details Movie"} link={"/"} element={<BsBookmarkDash className="bookmark" />}></HeaderNavigation>
 
             <div className="movie-details">
                 <img
@@ -75,6 +76,15 @@ const MovieDetails = () => {
                     </p>
 
                 </div>
+
+                <h2 className="movie-details__title-under-genre">Synopsis</h2>
+
+                <p className="movie-details__synopsis">
+                    {movie.overview}
+                </p>
+
+
+            <ActionButton anchorTagClass={"book"} buttonClass={"book__button"} text={"Book Ticket"}></ActionButton>
 
             </div>
         </>

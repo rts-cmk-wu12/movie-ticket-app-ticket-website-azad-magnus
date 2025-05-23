@@ -45,7 +45,27 @@
     width: 100%;
     max-width: 315px;
     background-color: $blue-bg;
-    padding: 10px;
+    padding: 15px;
+    
+    border-radius: 12px;
+    &:hover {
+      background-color: color.adjust($blue-bg, $lightness: -10%);
+    }
+  }
+}
+
+
+
+.book {
+    display: flex;
+    justify-content: center;
+   margin-top: 10px; 
+   margin-bottom: 10px;
+  &__button {
+    width: 100%;
+    max-width: 315px;
+    background-color: $blue-bg;
+    padding: 15px;
     
     border-radius: 12px;
     &:hover {
