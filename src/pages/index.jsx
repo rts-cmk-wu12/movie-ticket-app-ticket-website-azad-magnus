@@ -6,18 +6,7 @@ import "~style/components/ComingSoon.scss"
 import {ComingSoon} from "~components/ComingSoon.jsx";
 import {CinemaNear} from "~components/CinemaNear.jsx";
 import {useEffect, useState} from "react";
-import Nordisk from "~assets/svg/nordiskbiograf.png";
-import Kino from "~assets/svg/kino.png";
-import Vue from "~assets/svg/vue.png";
-import Megascope from "~assets/svg/megascope.png";
-// Add more as needed
 
-const imageMap = {
-    "~assets/svg/nordiskbiograf.png": Nordisk,
-    "~assets/svg/kino.png": Kino,
-    "~assets/svg/vue.png": Vue,
-    "~assets/svg/megascope.png": Megascope,
-};
 
 const mainPage = () => {
     const CINEMA_DATA_URL = "https://raw.githubusercontent.com/Sh3dow-ware/cinema-data/main/cinema-data.json"
@@ -33,7 +22,7 @@ const mainPage = () => {
             })
             .then((data) => {
                 const enrichedData = data.map((cinema) => ({
-                    ...cinema, image: imageMap[cinema.image] || "",
+                    ...cinema, image: cinema.image,
                 }));
                 setCinemas(enrichedData);
                 setLoading(false);
