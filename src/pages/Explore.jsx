@@ -27,8 +27,6 @@ const discoverPage = () => {
 
     return (
         <>
-            <HeaderNavigation title={"Explore"} link={"/"} element={<IoIosSearch size={24}/>}></HeaderNavigation>
-            <DropDownInput name="cinema" label="Cinema" options={cinemas?.map((element)=>element?.name)}></DropDownInput>
             <div className={"top-movies"}>
                 <div className={"top-movies__heading"}>
                     <h2>Top Movies</h2>
