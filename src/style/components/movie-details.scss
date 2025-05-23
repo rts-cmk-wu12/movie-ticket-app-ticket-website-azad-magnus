@@ -1,11 +1,14 @@
 .movie-details {
-  padding: 50px;
-
+  padding: 40px;
+width: 100vw;
   &__image {
+    max-width: 550px;
+    min-width: 50px;
+    margin: auto;
+    width: 100%;
+    height: auto;
     border-radius: 20px;
-    object-fit: cover;
 
-    aspect-ratio: 16 / 9;
 
     @media (max-width: 768px) {
       aspect-ratio: 9 / 16;
@@ -15,4 +18,66 @@
       aspect-ratio: 3 / 4;
     }
   }
+
+  &__title {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  &__overview {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  &__genres {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  &__genre {
+    background-color: #252932;
+    padding: 6px;
+    border-radius: 8px;
+    white-space: nowrap;
+    margin-right: 10px;
+    color: #BABFC9;
+  }
+
+  &__runtime {
+    background-color: #252932;
+    padding: 6px;
+    border-radius: 8px;
+    white-space: nowrap;
+    color: #BABFC9;
+  }
+
+  &__rating-divider{
+    margin-left: 2px;
+    margin-right: 10px;
+  }
+
+  &__rating-star{
+    color: #FFA235;
+    margin-right: 3px;
+  }
+
+  &__title-under-genre{
+    margin-top: 20px;
+  }
+
+  &__synopsis{
+    color: #696D74;
+    margin-bottom: 20px;
+  }
+}
+
+.bookmark {
+  width: 24px;
+  height: 24px;
 }
