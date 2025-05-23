@@ -27,6 +27,8 @@ const discoverPage = () => {
 
     return (
         <>
+            <HeaderNavigation title={"Explore"} link={"/"} element={<IoIosSearch size={24}/>}></HeaderNavigation>
+
             <div className={"top-movies"}>
                 <div className={"top-movies__heading"}>
                     <h2>Top Movies</h2>
