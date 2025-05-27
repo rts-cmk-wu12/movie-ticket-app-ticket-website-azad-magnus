@@ -14,7 +14,7 @@ import AddUser from "~assets/svg/AddUser.svg";
 const profilePage = () => {
     return (
         <>
-      <HeaderNavigation></HeaderNavigation>
+       <HeaderNavigation title={"Settings"} link={"/"} ></HeaderNavigation>
             <div className="profile-section">
                 <div className="profile-section-container">
                 <img className={"welcome-introduction__image"} src={ProfilePicture} alt="Profile Picture" />
