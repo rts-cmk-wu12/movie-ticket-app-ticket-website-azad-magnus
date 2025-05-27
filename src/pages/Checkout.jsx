@@ -68,12 +68,12 @@ const Checkout = () => {
 
     return (<>
             <HeaderNavigation title={"Checkout"} link={"/"}></HeaderNavigation>
-            <div className="payment-method">
+            <div className={"payment-method " + (showPopup ? "blurred__background" : "")}>
                 <h2>Payment Method</h2>
                 <p>Change</p>
             </div>
-            <CardComponent></CardComponent>
-            <div className="payment-details-container">
+            <CardComponent blurClass={showPopup}></CardComponent>
+        <div className={"payment-details-container " + (showPopup ? "blurred__background" : "")}>
                 <h2>Payment Details</h2>
                 <p>Your Email</p>
                 <form onSubmit={validateForm}>
