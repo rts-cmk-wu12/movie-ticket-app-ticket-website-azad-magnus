@@ -84,7 +84,7 @@ const MovieDetails = () => {
                 </p>
 
 
-            <ActionButton anchorTagClass={"book"} buttonClass={"book__button"} text={"Book Ticket"}></ActionButton>
+            <ActionButton navigateTo={"/Cinema"} anchorTagClass={"book"} buttonClass={"book__button"} text={"Book Ticket"}></ActionButton>
 
             </div>
         </>

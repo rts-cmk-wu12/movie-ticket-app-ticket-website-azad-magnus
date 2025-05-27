@@ -5,6 +5,8 @@
 .standard {
   display: block;
   max-width: 315px;
+  width: 100%;
+  margin: 10px auto;
   height: max-content;
   &__button {
     width: 100%;

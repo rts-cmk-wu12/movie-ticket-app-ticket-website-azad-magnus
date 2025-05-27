@@ -50,7 +50,7 @@ const Checkout = () => {
             </div>
 
 
-            <ActionButton anchorTagClass={"payment"} buttonClass={"payment__button"} text={"Pay Now | $99.8"}></ActionButton>
+            <ActionButton navigateTo={"/"} anchorTagClass={"payment"} buttonClass={"payment__button"} text={"Pay Now | $99.8"}></ActionButton>
         </>
     )
 }
