@@ -1,43 +1,64 @@
-import {HeaderNavigation} from "~components/HeaderNavigation";
-import {NavigationBar} from "~components/NavigationBar.jsx";
-import {IoIosSearch} from "react-icons/io";
-import "~style/components/Explore.scss"
-import {useEffect, useState} from "react";
-import {Link} from "react-router";
+import { HeaderNavigation } from "~components/HeaderNavigation";
+import { NavigationBar } from "~components/NavigationBar.jsx";
+import { IoIosSearch } from "react-icons/io";
+import "~style/components/Explore.scss";
+import { useEffect, useState } from "react";
+import { Link } from "react-router";
 
-
-const discoverPage = () => {
-
+const DiscoverPage = () => {
     const [movies, setMovies] = useState([]);
     const [genres, setGenres] = useState([]);
+    const [activeTab, setActiveTab] = useState("now");
 
     useEffect(() => {
-        const fetchPopularMovies = async () => {
+        const fetchMovies = async () => {
             try {
-                const response = await fetch('http://localhost:3000/movie/popular');
-                const genreResponse = await fetch("http://localhost:3000/genre/movie/list")
+                const url = activeTab === "now"
+                    ? "http://localhost:3000/movie/popular"
+                    : "http://localhost:3000/movie/upcoming";
 
-                const data = await response.json();
-                const genreData = await genreResponse.json()
-                console.log(genreData.genres)
+                const [movieRes, genreRes] = await Promise.all([
+                    fetch(url),
+                    fetch("http://localhost:3000/genre/movie/list")
+                ]);
+
+                const movieData = await movieRes.json();
+                const genreData = await genreRes.json();
+
+                setMovies(movieData.results);
                 setGenres(genreData.genres);
-                setMovies(data.results);
-            } catch (error) {
-                console.error('Failed to fetch movies:', error);
+            } catch (err) {
+                console.error("Failed to fetch movies:", err);
             }
         };
 
-        fetchPopularMovies();
-    }, []);
-
+        fetchMovies();
+    }, [activeTab]);
 
     return (
         <>
-            <HeaderNavigation title={"Explore"} link={"/"} element={<IoIosSearch size={24}/>}></HeaderNavigation>
+            <HeaderNavigation title={"Explore"} link={"/"} element={<IoIosSearch size={24} />} />
+
+            <div className="tab-switcher">
+                <div className="tab-container">
+                    <div
+                        className={`tab ${activeTab === "now" ? "active" : ""}`}
+                        onClick={() => setActiveTab("now")}
+                    >
+                        Now Showing
+                    </div>
+                    <div
+                        className={`tab ${activeTab === "upcoming" ? "active" : ""}`}
+                        onClick={() => setActiveTab("upcoming")}
+                    >
+                        Upcoming
+                    </div>
+                </div>
+            </div>
 
             <div className={"top-movies"}>
                 <div className={"top-movies__heading"}>
-                    <h2>Top Movies</h2>
+                    <h2>{activeTab === "now" ? "Top Movies" : "Upcoming Movies"}</h2>
                     <p>See more</p>
                 </div>
                 <div className="top-movies__section">
@@ -53,7 +74,7 @@ const discoverPage = () => {
                             <p className="top-movies__title">{movie.title}</p>
                             <div className="top-movies__stars">
                                 <div
-                                    style={{width: `${(movie.vote_average / 10) * 100}%`}}
+                                    style={{ width: `${(movie.vote_average / 10) * 100}%` }}
                                     className="top-movies__rating"
                                 >
                                     <span>★★★★★</span>
@@ -86,9 +107,12 @@ const discoverPage = () => {
                     ))}
                 </div>
             </div>
-            <NavigationBar></NavigationBar>
+            <NavigationBar />
         </>
-    )
-}
+    );
+};
 
-export default discoverPage;
+export default DiscoverPage;
+
+
+
