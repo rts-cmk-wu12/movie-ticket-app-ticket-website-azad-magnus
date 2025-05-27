@@ -83,6 +83,12 @@ fastify.get('/movie/popular', async () => {
     return data;
 });
 
+
+fastify.get('/genre/movie/list', async () => {
+    const { data } = await tmdb.get('/genre/movie/list');
+    return data;
+});
+
 // Start Function Boots our server with fastify
 const start = async () => {
     try {
