@@ -98,3 +98,35 @@
     }
   }
 }
+
+
+.tab-switcher {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+
+  .tab-container {
+    background-color: #2c2c2c;
+    border-radius: 12px;
+    display: flex;
+    padding: 0.75rem;
+    gap: 4px;
+    position: relative;
+    width: fit-content;
+
+    .tab {
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      color: #aaa;
+
+      &.active {
+        background-color: #55aaff;
+        color: white;
+      }
+    }
+  }
+}
