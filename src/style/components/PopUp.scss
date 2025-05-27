@@ -1,3 +1,18 @@
+.pop-up-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+
+.blurred__background {
+  opacity: 0.5;
+  filter: blur(1px);
+  pointer-events: none;
+}
+
+
 .pop-up {
   background-color: #54a8e5;
   color: #ffffff;

@@ -1,9 +1,9 @@
 import "~style/components/CardComponent.scss"
 import masterCard from "~assets/svg/mastercard.png"
-export const CardComponent = () => {
+export const CardComponent = ({blurClass}) => {
     return (
         <>
-        <div className={"card__container"}>
+        <div className={"card__container" + (blurClass ? " blurred__background" : "")}>
             <div className="card">
                 <div className="card__top">
                     <img className="card-img" src={masterCard} alt="Master Card" />
