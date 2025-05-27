@@ -1,5 +1,6 @@
 import "~style/components/CinemaComponent.scss";
 import cinemaScreen from "~assets/svg/cinemascreen.svg";
+import {PopUp} from "~components/PopUp.jsx";
 
 export default function Cinema({rows, numberOfRows = 1, ocupiedSeats}) {
     const rowLabels = "abcdefghijklmnopqrstuvwxyz".split("");
