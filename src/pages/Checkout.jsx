@@ -15,6 +15,7 @@ const Checkout = () => {
         cvv: ''
     });
     const [errors, setErrors] = useState({});
+    const [showPopup, setShowPopup] = useState(false);
 
     const validateForm = (e) => {
         e.preventDefault();
@@ -52,7 +53,7 @@ const Checkout = () => {
         setErrors(newErrors);
 
         if (Object.keys(newErrors).length === 0) {
-         
+            setShowPopup(true);
             console.log('Form is valid, processing payment...');
         }
     };
@@ -144,13 +145,13 @@ const Checkout = () => {
                 </form>
             </div>
 
-            <PopUp
+            {showPopup && <PopUp
                 icon={<IoShieldCheckmarkSharp size={48}/>}
                 title="Your payment was successful"
                 message="Adele is a Scottish heiress whose extremely wealthy family owns estates and grounds. When she was a teenager. Read More"
                 actionElement={<ActionButton navigateTo={"/"} anchorTagClass={"backButton"} buttonClass={"backButton__button"}
                                              text={"See E-Ticket"}></ActionButton>}
-            />
+            />}
         </>)
 }
 
