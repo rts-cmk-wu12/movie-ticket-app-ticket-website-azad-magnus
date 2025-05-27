@@ -1,11 +1,11 @@
 
 import "~style/components/ActionButton.scss"
-export const ActionButton = ({text, navigateTo, anchorTagClass, buttonClass}) => {
+export const ActionButton = ({text, navigateTo, anchorTagClass, buttonClass, formType}) => {
     return (
         <>
             <>
                 <a className={anchorTagClass} href={navigateTo}>
-                    <button className={buttonClass}>{text}</button>
+                    <button type={formType} className={buttonClass}>{text}</button>
                 </a>
             </>
         </>
