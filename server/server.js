@@ -2,6 +2,8 @@ import Fastify from 'fastify';
 import cors from '@fastify/cors';
 import axios from 'axios';
 import dotenv from 'dotenv';
+import { MongoClient } from 'mongodb';
+import crypto from 'crypto';
 
 dotenv.config({path: 'server/.env'});
 
@@ -16,6 +18,21 @@ if (!TMDB_API_KEY) {
     throw new Error('TMDB_API_KEY is missing. Fix your .env file or create .env file');
 }
 
+
+// Encryption config
+const algorithm = 'aes-256-cbc';
+const ENCRYPTION_SECRET = process.env.ENCRYPTION_SECRET;
+if (!ENCRYPTION_SECRET) {
+    throw new Error('ENCRYPTION_SECRET missing from .env — don’t play with fire!');
+}
+const key = crypto.scryptSync(ENCRYPTION_SECRET, 'salt', 32);
+
+function encrypt(text) {
+    const iv = crypto.randomBytes(16);
+    const cipher = crypto.createCipheriv(algorithm, key, iv);
+    const encrypted = Buffer.concat([cipher.update(text, 'utf8'), cipher.final()]);
+    return iv.toString('hex') + ':' + encrypted.toString('hex');
+}
 
 const tmdb = axios.create({
     baseURL: TMDB_BASE_URL,
@@ -88,6 +105,85 @@ fastify.get('/genre/movie/list', async () => {
     const { data } = await tmdb.get('/genre/movie/list');
     return data;
 });
+
+
+
+const MONGO_URI = process.env.MONGO_URI;
+if (!MONGO_URI) {
+    throw new Error('MONGO_URI missing. Put it in your .env file, genius.');
+}
+const client = new MongoClient(MONGO_URI);
+async function connectDB() {
+    if (!client.isConnected?.()) {
+        await client.connect();
+    }
+    return client.db('cinemaDB');
+}
+
+fastify.post('/api/checkout', {
+    schema: {
+        body: {
+            type: 'object',
+            required: ['movie', 'selectedCinema', 'selectedSeats', 'paymentInfo'],
+            properties: {
+                movie: {
+                    type: 'object',
+                    properties: { id: { type: 'number' }, title: { type: 'string' } },
+                    required: ['id', 'title'],
+                },
+                selectedCinema: {
+                    type: 'object',
+                    properties: { name: { type: 'string' } },
+                    required: ['name'],
+                },
+                selectedSeats: {
+                    type: 'array',
+                    items: { type: 'string' },
+                    minItems: 1,
+                },
+                paymentInfo: {
+                    type: 'object',
+                    properties: {
+                        email: { type: 'string' },
+                        cardholderName: { type: 'string' },
+                        cardNumber: { type: 'string' },
+                        expiryDate: { type: 'string' },
+                        cvv: { type: 'string' },
+                    },
+                    required: ['email', 'cardholderName', 'cardNumber', 'expiryDate', 'cvv'],
+                },
+            },
+        },
+    },
+}, async (request, reply) => {
+    try {
+        const db = await connectDB();
+        const checkoutCollection = db.collection('checkouts');
+
+        const { movie, selectedCinema, selectedSeats, paymentInfo } = request.body;
+
+        const encryptedPaymentInfo = {
+            email: paymentInfo.email,
+            cardholderName: paymentInfo.cardholderName,
+            cardNumber: encrypt(paymentInfo.cardNumber),
+            expiryDate: encrypt(paymentInfo.expiryDate),
+        };
+
+        const result = await checkoutCollection.insertOne({
+            movie,
+            selectedCinema,
+            selectedSeats,
+            paymentInfo: encryptedPaymentInfo,
+            purchasedAt: new Date(),
+        });
+
+        reply.code(201).send({ message: 'Checkout successful', checkoutId: result.insertedId });
+    } catch (error) {
+        request.log.error(error);
+        reply.code(500).send({ error: 'Failed to save checkout data' });
+    }
+});
+
 
 // Start Function Boots our server with fastify
 const start = async () => {

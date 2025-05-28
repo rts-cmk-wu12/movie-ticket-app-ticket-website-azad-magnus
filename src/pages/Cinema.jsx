@@ -1,21 +1,24 @@
-import React, { useEffect, useState, useRef } from "react";
+import {useEffect, useRef, useState} from "react";
+import {useLocation, useNavigate} from "react-router";
 import CinemaComponent from "~components/CinemaComponent.jsx";
-import { HeaderNavigation } from "~components/HeaderNavigation.jsx";
+import {HeaderNavigation} from "~components/HeaderNavigation.jsx";
 import "~style/components/CinemaDropdown.scss";
 import {ActionButton} from "~components/ActionButton.jsx";
 
 const CINEMA_API_URL = "https://cdn.jsdelivr.net/gh/Sh3dow-ware/cinema-data@v1.0.1/cinema-data.json";
 
-const CustomDropdown = ({ cinemas, selectedIndex, setSelectedIndex }) => {
+const CustomDropdown = ({cinemas, selectedIndex, setSelectedIndex}) => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
 
-    React.useEffect(() => {
+
+    useEffect(() => {
         function handleClickOutside(event) {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
                 setIsOpen(false);
             }
         }
+
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
@@ -45,9 +48,9 @@ const CustomDropdown = ({ cinemas, selectedIndex, setSelectedIndex }) => {
                 aria-haspopup="listbox"
                 aria-expanded={isOpen}
             >
-        <span className="cinema-selector__custom-selected">
-          {cinemas[selectedIndex]?.name || "Select a cinema"}
-        </span>
+                <span className="cinema-selector__custom-selected">
+                    {cinemas[selectedIndex]?.name || "Select a cinema"}
+                </span>
                 <span className={`cinema-selector__arrow ${isOpen ? "open" : ""}`}>&#9662;</span>
             </div>
 
@@ -77,10 +80,25 @@ const CustomDropdown = ({ cinemas, selectedIndex, setSelectedIndex }) => {
     );
 };
 
-export const Cinema = () => {
+const Cinema = () => {
+    const location = useLocation();
+    const movie = location.state?.movie;
+    const navigate = useNavigate();
+
     const [cinemas, setCinemas] = useState([]);
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [loading, setLoading] = useState(true);
+    const [selectedSeats, setSelectedSeats] = useState([]);
+
+    const handleCheckoutClick = () => {
+        if (selectedSeats.length === 0) {
+            alert("You must select at least one seat before continuing to checkout!");
+            return;
+        }
+        console.log(selectedSeats, movie, selectedCinema)
+        navigate("/checkout", {state: {movie, selectedCinema, selectedSeats}});
+    };
+
 
     useEffect(() => {
         fetch(CINEMA_API_URL)
@@ -102,15 +120,40 @@ export const Cinema = () => {
 
     return (
         <>
-            <HeaderNavigation title={"Select seats"} link={"/"}></HeaderNavigation>
-            <div>
-                <CustomDropdown cinemas={cinemas} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+            <HeaderNavigation title={"Select seats"} link={"/"}/>
 
-                <div style={{ marginTop: "20px" }}>
-                    <CinemaComponent rows={selectedCinema["cinema-rows"]} ocupiedSeats={["a2"]} />
+            {movie ? (
+                <div className="movie-summary" style={{marginBottom: "20px"}}>
+                    <h2>{movie.title}</h2>
+                    <img
+                        src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+                        alt={movie.title}
+                        style={{maxWidth: "150px", borderRadius: "8px"}}
+                    />
+                    <p>{movie.overview}</p>
                 </div>
+            ) : (
+                <p>No movie selected.</p>
+            )}
+
+            <CustomDropdown
+                cinemas={cinemas}
+                selectedIndex={selectedIndex}
+                setSelectedIndex={setSelectedIndex}
+            />
+
+            <div style={{marginTop: "20px"}}>
+                <CinemaComponent rows={selectedCinema["cinema-rows"]}
+                                 ocupiedSeats={[]}
+                                 onSelectSeats={setSelectedSeats}/>
             </div>
-            <ActionButton navigateTo={"Checkout"} anchorTagClass={"standard"} buttonClass={"standard__button"} text={"Checkout"}></ActionButton>
+
+            <ActionButton
+                onClick={handleCheckoutClick}
+                anchorTagClass={"standard"}
+                buttonClass={"standard__button"}
+                text={"Checkout"}
+            />
         </>
     );
 };

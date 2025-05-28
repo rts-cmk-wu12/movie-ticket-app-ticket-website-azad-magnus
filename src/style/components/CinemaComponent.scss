@@ -98,3 +98,42 @@
     }
   }
 }
+
+
+.movie-summary {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #7e7e7e;
+  padding: 15px 20px;
+  border-radius: 12px;
+  color: #f0f0f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+  max-width: 600px;
+
+  h2 {
+    margin: 0 0 10px 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ffcc00;
+    flex-shrink: 0;
+  }
+
+  img {
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    max-width: 150px;
+    height: auto;
+    object-fit: cover;
+  }
+
+  p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.4;
+    flex: 1;
+    color: #ddd;
+  }
+}
