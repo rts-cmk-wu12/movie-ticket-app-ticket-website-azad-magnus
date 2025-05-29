@@ -1,0 +1,106 @@
+
+.ticket-wrapper {
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.ticket {
+  position: relative;
+  font-family: Arial, sans-serif;
+  max-width: 350px;
+  margin: 2rem auto;
+  padding: 1rem;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  height: max-content;
+
+  &__notch {
+    position: absolute;
+    top: 65%;
+    width: 40px;
+    height: 40px;
+    background: #1b1e25;
+    border: 2px solid black;
+    border-radius: 50%;
+    z-index: 2;
+
+    &--left {
+      left: -10px;
+      border-right: none;
+    }
+
+    &--right {
+      right: -10px;
+      border-left: none;
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    gap: 2rem;
+    color: black;
+  }
+
+  &__e-ticket {
+    color: #ff4d6d;
+    font-weight: bold;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+
+    div {
+      strong {
+        display: block;
+        font-weight: 600;
+        color: #777;
+        margin-bottom: 0.25rem;
+      }
+
+      div {
+        color: #000;
+        font-weight: bold;
+      }
+    }
+  }
+
+  &__separator {
+    position: relative;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__dashed-line {
+    width: 100%;
+    border-top: 2px dashed #000;
+    z-index: 1;
+  }
+
+  svg {
+    display: block;
+    margin: 0 auto;
+    margin-top: 1rem;
+  }
+}
+
+.instruction-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  max-width: 325px;
+
+  &__description {
+    color: gray;
+  }
+}

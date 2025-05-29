@@ -20,11 +20,8 @@
             "~/*": [
                 "src/*"
             ],
-            "~svg/*": [
-                "src/assets/svg/*"
-            ],
-            "~details/*": [
-                "src/pages/details/*"
+            "~Cinema/*": [
+                "src/pages/Cinema/*"
             ]
         }
     }

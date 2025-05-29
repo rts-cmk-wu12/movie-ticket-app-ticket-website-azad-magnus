@@ -8,13 +8,19 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server": "node server/server.js"
+    "server": "node server/server.js",
+    "start": "node server/server.js",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@fastify/cors": "^11.0.1",
+    "@fastify/static": "^8.2.0",
     "axios": "^1.9.0",
     "dotenv": "^16.5.0",
     "fastify": "^5.3.3",
+    "html2pdf.js": "^0.10.3",
+    "jsbarcode": "^3.11.6",
+    "mongodb": "^6.16.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router": "^7.6.0",
