@@ -5,6 +5,7 @@ import { HeaderNavigation } from "~components/HeaderNavigation";
 import { BsBookmarkDash } from "react-icons/bs";
 import { IoIosStar } from "react-icons/io";
 import { ActionButton } from "~components/ActionButton.jsx";
+import {getApiUrl} from "~utils/ApiUrl.jsx";
 
 const MovieDetails = () => {
     const { id } = useParams();
@@ -15,12 +16,12 @@ const MovieDetails = () => {
     useEffect(() => {
         const fetchMovieAndDirector = async () => {
             try {
-                const movieRes = await fetch(`http://localhost:3000/movie/${id}`);
+                const movieRes = await fetch(getApiUrl(`movie/${id}`));
                 if (!movieRes.ok) throw new Error("Failed to fetch movie");
 
                 const movieData = await movieRes.json();
 
-                const creditsRes = await fetch(`http://localhost:3000/movie/${id}/credits`);
+                const creditsRes = await fetch(getApiUrl(`movie/${id}/credits`));
                 if (!creditsRes.ok) throw new Error("Failed to fetch credits");
 
                 const creditsData = await creditsRes.json();
