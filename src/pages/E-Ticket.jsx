@@ -1,24 +1,27 @@
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router";
 import JsBarcode from "jsbarcode";
-import "~style/components/ETicket.scss";
-import {HeaderNavigation} from "~components/HeaderNavigation.jsx";
-import {ActionButton} from "~components/ActionButton.jsx";
-import {IoShieldCheckmarkSharp} from "react-icons/io5";
-import {PopUp} from "~components/PopUp.jsx";
 import html2pdf from "html2pdf.js";
-
+import "~style/components/ETicket.scss";
+import { HeaderNavigation } from "~components/HeaderNavigation.jsx";
+import { ActionButton } from "~components/ActionButton.jsx";
+import { IoShieldCheckmarkSharp } from "react-icons/io5";
+import { PopUp } from "~components/PopUp.jsx";
 
 const ETicket = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
     const barcodeRef = useRef(null);
     const [showPopup, setShowPopup] = useState(false);
 
-    const generateRandomBarcode = () => {
-        return Array.from({length: 12}, () =>
-            Math.floor(Math.random() * 10)
-        ).join("");
-    };
+    const { movie, selectedCinema, selectedSeats } = location.state || {};
 
     useEffect(() => {
+        if (!movie || !selectedCinema || !selectedSeats) {
+            navigate("/", { replace: true });
+            return;
+        }
+
         const randomCode = generateRandomBarcode();
         if (barcodeRef.current) {
             JsBarcode(barcodeRef.current, randomCode, {
@@ -29,7 +32,11 @@ const ETicket = () => {
                 margin: 0,
             });
         }
-    }, []);
+    }, [movie, selectedCinema, selectedSeats, navigate]);
+
+    const generateRandomBarcode = () => {
+        return Array.from({ length: 12 }, () => Math.floor(Math.random() * 10)).join("");
+    };
 
     const handleDownloadClick = async () => {
         const ETicketHtmlToPdf = document.querySelector(".ticket");
@@ -57,33 +64,34 @@ const ETicket = () => {
                         Come to the cinema, show and scan the barcode to the space provided. Continue to comply with health protocols.
                     </p>
                 </div>
+
                 <div className="ticket">
                     <div className="ticket__notch ticket__notch--left"></div>
                     <div className="ticket__notch ticket__notch--right"></div>
 
                     <div className="ticket__header">
-                        <span><strong>Film:</strong> Shang-Chi</span>
+                        <span><strong>Film:</strong> {movie?.title}</span>
                         <span className="ticket__e-ticket">e-ticket</span>
                     </div>
 
                     <div className="ticket__grid">
                         <div><strong>Date</strong>
-                            <div>06/09/2021</div>
+                            <div>{selectedCinema?.date || "N/A"}</div>
                         </div>
                         <div><strong>Seats</strong>
-                            <div>c4, c5</div>
+                            <div>{selectedSeats?.join(", ")}</div>
                         </div>
                         <div><strong>Location</strong>
-                            <div>Viva Cinema</div>
+                            <div>{selectedCinema?.name || "Unknown"}</div>
                         </div>
                         <div><strong>Time</strong>
-                            <div>01.00 PM</div>
+                            <div>{selectedCinema?.time || "TBD"}</div>
                         </div>
                         <div><strong>Payment</strong>
                             <div>Successful</div>
                         </div>
                         <div><strong>Order</strong>
-                            <div>1904566</div>
+                            <div>{Math.floor(Math.random() * 10000000)}</div>
                         </div>
                     </div>
 
@@ -93,6 +101,7 @@ const ETicket = () => {
 
                     <svg ref={barcodeRef} />
                 </div>
+
                 <ActionButton
                     text={"Download E-Ticket"}
                     anchorTagClass={"standard"}
@@ -105,7 +114,7 @@ const ETicket = () => {
                 <PopUp
                     icon={<IoShieldCheckmarkSharp size={48} />}
                     title="Your ticket has been downloaded"
-                    message="Adele is a Scottish heiress whose extremely wealthy family owns estates and grounds. When she was a teenager. Read More"
+                    message="Adele is still rich, still Scottish, and your ticket is now in your downloads folder. Boom."
                     actionElement={
                         <ActionButton
                             navigateTo={"/"}
