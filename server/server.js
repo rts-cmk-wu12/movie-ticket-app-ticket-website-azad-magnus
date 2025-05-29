@@ -24,7 +24,7 @@ fastify.register(fastifyStatic, {
 })
 
 fastify.setNotFoundHandler((request, reply) => {
-    reply.send("index.html") // basically our payload to send the index.html
+    reply.sendFile("index.html") // Changed it to sendfile
 })
 
 
