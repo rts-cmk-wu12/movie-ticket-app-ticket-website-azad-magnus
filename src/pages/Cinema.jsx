@@ -121,7 +121,7 @@ const Cinema = () => {
         const cinemaName = selected.name;
         const movieId = movie.id;
 
-        fetch(getApiUrl(`getUnavailableSeats?movieId=${encodeURIComponent(movieId)}&cinemaName=${encodeURIComponent(cinemaName)}`))
+        fetch(getApiUrl(`api/getUnavailableSeats?movieId=${encodeURIComponent(movieId)}&cinemaName=${encodeURIComponent(cinemaName)}`))
             .then((res) => {
                 if (!res.ok) throw new Error("Failed to fetch unavailable seats");
                 return res.json();
