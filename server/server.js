@@ -4,11 +4,25 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 import { MongoClient } from 'mongodb';
 import crypto from 'crypto';
+import path from "path";
+import fastifyStatic from '@fastify/static';
+
 
 dotenv.config({path: 'server/.env'});
 
 const fastify = Fastify({ logger: true });
 await fastify.register(cors);
+
+// This code just serves our frontend dist.
+fastify.register(fastifyStatic, {
+    root: path.join(__dirname, "dist"),
+    wildcard: true,
+})
+
+fastify.setNotFoundHandler((request, reply) => {
+    reply.send("index.html") // basically our payload to send the index.html
+})
+
 
 // Config of ENV to get API KEY
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
@@ -231,4 +245,3 @@ const start = async () => {
 };
 
 start();
-
