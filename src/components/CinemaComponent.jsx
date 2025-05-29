@@ -2,12 +2,12 @@ import "~style/components/CinemaComponent.scss";
 import cinemaScreen from "~assets/svg/cinemascreen.svg";
 import {useState} from "react";
 
-export default function CinemaComponent({ rows, ocupiedSeats, onSelectSeats }) {
+export default function CinemaComponent({ rows, occupiedSeats, onSelectSeats }) {
     const rowLabels = "abcdefghijklmnopqrstuvwxyz".split("");
     const seatCounter = {};
     const [selectedSeats, setSelectedSeats] = useState([]);
 
-    const isSeatOccupied = (seatId) => ocupiedSeats.includes(seatId);
+    const isSeatOccupied = (seatId) => occupiedSeats.includes(seatId);
 
     const toggleSeatSelection = (seatId) => {
         setSelectedSeats((prevSelected) => {
