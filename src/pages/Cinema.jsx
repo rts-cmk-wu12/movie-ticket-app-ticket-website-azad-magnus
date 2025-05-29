@@ -89,16 +89,16 @@ const Cinema = () => {
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [loading, setLoading] = useState(true);
     const [selectedSeats, setSelectedSeats] = useState([]);
+    const [occupiedSeats, setOccupiedSeats] = useState([]);
 
     const handleCheckoutClick = () => {
         if (selectedSeats.length === 0) {
             alert("You must select at least one seat before continuing to checkout!");
             return;
         }
-        console.log(selectedSeats, movie, selectedCinema)
-        navigate("/checkout", {state: {movie, selectedCinema, selectedSeats}});
+        console.log(selectedSeats, movie, selectedCinema);
+        navigate("/checkout", { state: { movie, selectedCinema, selectedSeats } });
     };
-
 
     useEffect(() => {
         fetch(CINEMA_API_URL)
@@ -113,6 +113,27 @@ const Cinema = () => {
             });
     }, []);
 
+    useEffect(() => {
+        if (cinemas.length === 0 || !movie) return;
+
+        const selected = cinemas[selectedIndex];
+        const cinemaName = selected.name;
+        const movieId = movie.id;
+
+        fetch(`http://localhost:3000/api/getUnavailableSeats?movieId=${encodeURIComponent(movieId)}&cinemaName=${encodeURIComponent(cinemaName)}`)
+            .then((res) => {
+                if (!res.ok) throw new Error("Failed to fetch unavailable seats");
+                return res.json();
+            })
+            .then((data) => {
+                setOccupiedSeats(data.unavailableSeats || []);
+            })
+            .catch((error) => {
+                console.error("Error fetching unavailable seats:", error);
+                setOccupiedSeats([]);
+            });
+    }, [selectedIndex, cinemas, movie]);
+
     if (loading) return <div>Loading cinemas...</div>;
     if (!cinemas.length) return <div>No cinema data found.</div>;
 
@@ -120,15 +141,15 @@ const Cinema = () => {
 
     return (
         <>
-            <HeaderNavigation title={"Select seats"} link={"/"}/>
+            <HeaderNavigation title={"Select seats"} link={"/"} />
 
             {movie ? (
-                <div className="movie-summary" style={{marginBottom: "20px"}}>
+                <div className="movie-summary" style={{ marginBottom: "20px" }}>
                     <h2>{movie.title}</h2>
                     <img
                         src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
                         alt={movie.title}
-                        style={{maxWidth: "150px", borderRadius: "8px"}}
+                        style={{ maxWidth: "150px", borderRadius: "8px" }}
                     />
                     <p>{movie.overview}</p>
                 </div>
@@ -142,10 +163,12 @@ const Cinema = () => {
                 setSelectedIndex={setSelectedIndex}
             />
 
-            <div style={{marginTop: "20px"}}>
-                <CinemaComponent rows={selectedCinema["cinema-rows"]}
-                                 ocupiedSeats={[]}
-                                 onSelectSeats={setSelectedSeats}/>
+            <div style={{ marginTop: "20px" }}>
+                <CinemaComponent
+                    rows={selectedCinema["cinema-rows"]}
+                    occupiedSeats={occupiedSeats}
+                    onSelectSeats={setSelectedSeats}
+                />
             </div>
 
             <ActionButton
@@ -159,3 +182,4 @@ const Cinema = () => {
 };
 
 export default Cinema;
+
