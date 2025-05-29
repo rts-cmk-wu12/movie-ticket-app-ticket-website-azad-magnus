@@ -6,6 +6,7 @@ import { PopUp } from "~components/PopUp.jsx";
 import { IoShieldCheckmarkSharp } from "react-icons/io5";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
+import {getApiUrl} from "~utils/ApiUrl.jsx";
 
 const Checkout = () => {
     const location = useLocation();
@@ -85,7 +86,7 @@ const Checkout = () => {
         };
 
         try {
-            const res = await fetch("http://localhost:3000/api/checkout", {
+            const res = await fetch(getApiUrl("api/checkout"), {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload),

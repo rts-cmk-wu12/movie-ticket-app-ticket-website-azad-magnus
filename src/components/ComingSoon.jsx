@@ -1,6 +1,7 @@
 import {formatDateToMonthYear} from "~utils/DateTimerHelper.jsx";
 import {useEffect, useState} from "react";
 import {Link} from "react-router";
+import {getApiUrl} from "~utils/ApiUrl.jsx";
 
 export const ComingSoon = () => {
 
@@ -11,7 +12,7 @@ export const ComingSoon = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:3000/movie/upcoming", {
+                const response = await fetch(getApiUrl("movie/upcoming"), {
                     method: "GET",
                 });
 

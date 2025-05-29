@@ -4,6 +4,7 @@ import CinemaComponent from "~components/CinemaComponent.jsx";
 import {HeaderNavigation} from "~components/HeaderNavigation.jsx";
 import "~style/components/CinemaDropdown.scss";
 import {ActionButton} from "~components/ActionButton.jsx";
+import {getApiUrl} from "~utils/ApiUrl.jsx";
 
 const CINEMA_API_URL = "https://cdn.jsdelivr.net/gh/Sh3dow-ware/cinema-data@v1.0.1/cinema-data.json";
 
@@ -120,7 +121,7 @@ const Cinema = () => {
         const cinemaName = selected.name;
         const movieId = movie.id;
 
-        fetch(`http://localhost:3000/api/getUnavailableSeats?movieId=${encodeURIComponent(movieId)}&cinemaName=${encodeURIComponent(cinemaName)}`)
+        fetch(getApiUrl(`getUnavailableSeats?movieId=${encodeURIComponent(movieId)}&cinemaName=${encodeURIComponent(cinemaName)}`))
             .then((res) => {
                 if (!res.ok) throw new Error("Failed to fetch unavailable seats");
                 return res.json();

@@ -4,6 +4,7 @@ import { IoIosSearch } from "react-icons/io";
 import "~style/components/Explore.scss";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
+import {getApiUrl} from "~utils/ApiUrl.jsx";
 
 const DiscoverPage = () => {
     const [movies, setMovies] = useState([]);
@@ -14,12 +15,12 @@ const DiscoverPage = () => {
         const fetchMovies = async () => {
             try {
                 const url = activeTab === "now"
-                    ? "http://localhost:3000/movie/popular"
-                    : "http://localhost:3000/movie/upcoming";
+                    ? getApiUrl("movie/popular")
+                    : getApiUrl("movie/upcoming");
 
                 const [movieRes, genreRes] = await Promise.all([
                     fetch(url),
-                    fetch("http://localhost:3000/genre/movie/list")
+                    fetch(getApiUrl("genre/movie/list"))
                 ]);
 
                 const movieData = await movieRes.json();
