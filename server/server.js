@@ -19,7 +19,7 @@ await fastify.register(cors);
 
 // This code just serves our frontend dist.
 fastify.register(fastifyStatic, {
-    root: path.join(__dirname, "dist"),
+    root: path.join(__dirname, "../dist"),
     wildcard: true,
 })
 
@@ -75,9 +75,10 @@ const searchQuery = {
 };
 
 
-fastify.get('/', async () => {
-    return { message: '🎬 TMDB Fastify API is ready for action' };
+fastify.get('/', async (request, reply) => {
+    return reply.sendFile('index.html');
 });
+
 
 fastify.get('/movie/:id', {
     schema: { params: movieIdParam },
