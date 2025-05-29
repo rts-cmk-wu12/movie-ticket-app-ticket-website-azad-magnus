@@ -198,11 +198,20 @@ const Checkout = () => {
                     message="Adele is a Scottish heiress whose extremely wealthy family owns estates and grounds. When she was a teenager. Read More"
                     actionElement={
                         <ActionButton
-                            navigateTo={"/E-Ticket"}
+                            onClick={() =>
+                                navigate("/E-Ticket", {
+                                    state: {
+                                        movie,
+                                        selectedCinema,
+                                        selectedSeats,
+                                    },
+                                })
+                            }
                             anchorTagClass={"backButton"}
                             buttonClass={"backButton__button"}
                             text={"See E-Ticket"}
                         />
+
                     }
                 />
             )}
