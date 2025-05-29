@@ -185,12 +185,45 @@ fastify.post('/api/checkout', {
 });
 
 
+fastify.get('/api/getUnavailableSeats', {
+    schema: {
+        querystring: {
+            type: 'object',
+            required: ['movieId', 'cinemaName'],
+            properties: {
+                movieId: { type: 'number' },
+                cinemaName: { type: 'string' }
+            }
+        }
+    }
+}, async (request, reply) => {
+    try {
+        const db = await connectDB();
+        const checkoutCollection = db.collection('checkouts');
+
+        const { movieId, cinemaName } = request.query;
+
+        const checkouts = await checkoutCollection.find({
+            'movie.id': movieId,
+            'selectedCinema.name': cinemaName
+        }).toArray();
+
+        const allSeats = checkouts.flatMap(entry => entry.selectedSeats || []);
+
+        reply.send({ unavailableSeats: allSeats });
+    } catch (error) {
+        request.log.error(error);
+        reply.code(500).send({ error: 'Failed to fetch unavailable seats' });
+    }
+});
+
+
 // Start Function Boots our server with fastify
 const start = async () => {
     try {
         const port = process.env.PORT || 3000;
-        await fastify.listen({ port });
-        console.log(`Server is running at http://localhost:${port}`);
+        await fastify.listen({ port, host: '0.0.0.0' });
+        console.log(`Server is running at http://0.0.0.0:${port}`);
     } catch (err) {
         fastify.log.error(err);
         process.exit(1);
@@ -198,3 +231,4 @@ const start = async () => {
 };
 
 start();
+
